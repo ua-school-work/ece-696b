@@ -1,6 +1,5 @@
 // This code is for instructional purposes only, and it in essence a fork of
-// https://github.com/klimesf/kwic/blob/master/01-shared-data/src/cz/cvut/fel/ass/kwic/sharedData/KWIC.java
-
+// https://github.com/klimesf/kwic/tree/master
 package edu.arizona.josesosa;
 
 import java.io.*;
