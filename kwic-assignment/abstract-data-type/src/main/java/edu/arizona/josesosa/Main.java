@@ -1,7 +1,8 @@
+// This code is for instructional purposes only, and it in essence a fork of
+// https://github.com/klimesf/kwic/blob/master/01-shared-data/src/cz/cvut/fel/ass/kwic/sharedData/KWIC.java
+
 package edu.arizona.josesosa;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     // There is no shared memory in this architecture. Each object is responsible for its own data.
     public static void main(String[] args) throws Exception {
