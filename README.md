@@ -19,7 +19,7 @@ ___
 ## Assignment 3: Creational Patterns - Singleton
 
 This project demonstrates the Singleton design pattern, which ensures that a class has only one instance and provides a
-lobal point of access to it. For more details on running the project and the tests,
+global point of access to it. For more details on running the project and the tests,
 please see the [Singleton README](03-creational-patterns/singleton/README.md).
 
 ---
