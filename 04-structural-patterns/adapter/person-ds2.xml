@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<array-list>
+    <person xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns:java="http://java.sun.com" xsi:type="java:edu.arizona.josesosa.structural.adapter.model.adapter.PersonDS2ClassAdapter">
+        <id>1</id>
+        <f-name>Bauer</f-name>
+        <l-name>Chris</l-name>
+        <born>2003-06-12T17:18:46.984</born>
+        <salary-year>12012</salary-year>
+        <married>true</married>
+    </person>
+    <person xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns:java="http://java.sun.com" xsi:type="java:edu.arizona.josesosa.structural.adapter.model.adapter.PersonDS2ClassAdapter">
+        <id>2</id>
+        <f-name>Rick</f-name>
+        <l-name>Black</l-name>
+        <born>2003-06-12T17:18:46.984</born>
+        <salary-year>120</salary-year>
+        <married>false</married>
+    </person>
+</array-list>
