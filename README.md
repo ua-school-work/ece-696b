@@ -17,3 +17,8 @@ ___
 ## Assignment 3: Creational Patterns - Singleton
 
 This project demonstrates the Singleton design pattern, which ensures that a class has only one instance and provides a global point of access to it. For more details on running the project and the tests, please see the [Singleton README](03-creational-patterns/singleton/README.md).
+
+---
+## Assignment 5: Structural Patterns - Adapter
+
+This project demonstrates the Adapter design pattern, which allows objects with incompatible interfaces to collaborate. For more details on running the project and the tests, please see the [Adapter README](04-structural-patterns/adapter/README.md).

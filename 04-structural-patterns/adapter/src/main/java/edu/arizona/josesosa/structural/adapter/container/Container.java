@@ -1,7 +1,7 @@
 package edu.arizona.josesosa.structural.adapter.container;
 
 import edu.arizona.josesosa.structural.adapter.business.IPersonService;
-import edu.arizona.josesosa.structural.adapter.business.PersonService;
+import edu.arizona.josesosa.structural.adapter.business.RemotePersonService;
 import edu.arizona.josesosa.structural.adapter.view.ReportController;
 import edu.arizona.josesosa.structural.adapter.view.page.Page;
 import edu.arizona.josesosa.structural.adapter.view.page.PersonListPage;
@@ -20,7 +20,8 @@ public class Container {
 
     private static void bootstrap() {
         // bootstrap normally in XML
-        IPersonService personService = new PersonService();
+        // Using RemotePersonService instead of PersonService
+        IPersonService personService = new RemotePersonService();
         context.put("personService", personService);
 
         ReportController controller = new ReportController();
