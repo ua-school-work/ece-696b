@@ -41,3 +41,10 @@ please see the [Bridge README](04-structural-patterns/bridge/README.md).
 This project demonstrates the Proxy design pattern, which provides a surrogate or placeholder for another object to control access to it.
 The implementation uses a dynamic proxy to intercept method calls for access control, logging, and performance monitoring.
 For more details on running the project and the tests, please see the [Proxy README](04-structural-patterns/proxy/README.md).
+
+---
+## Assignment 8: Structural Patterns - Decorator
+
+This project demonstrates the Decorator design pattern, which allows behavior to be added to individual objects, either statically or dynamically, without affecting the behavior of other objects from the same class.
+The implementation shows how multiple decorators can be stacked to add combined functionality (compression and encryption) to a base component (file data source).
+For more details on running the project and the tests, please see the [Decorator README](04-structural-patterns/decorator/README.md).
