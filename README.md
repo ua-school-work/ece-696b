@@ -34,3 +34,10 @@ For more details on running the project and the tests, please see the [Adapter R
 This project demonstrates the Bridge design pattern, which is meant to decouple an abstraction from its implementation
 so that the two can vary independently. For more details on running the project and the tests,
 please see the [Bridge README](04-structural-patterns/bridge/README.md).
+
+---
+## Assignment 7: Structural Patterns - Proxy
+
+This project demonstrates the Proxy design pattern, which provides a surrogate or placeholder for another object to control access to it.
+The implementation uses a dynamic proxy to intercept method calls for access control, logging, and performance monitoring.
+For more details on running the project and the tests, please see the [Proxy README](04-structural-patterns/proxy/README.md).
