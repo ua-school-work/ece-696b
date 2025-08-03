@@ -16,16 +16,16 @@ public class Cart {
      * @param product
      * @param quantity
      */
-    public void addLine(Product product, int quantity) {
+    public Cart addLine(Product product, int quantity) {
         // aggregation
         for (CartLineItem line : orderList) {
             if (line.getProduct() == product) { // left == on purpose!
                 line.setQuantity(line.getQuantity() + quantity);
-                return;
+                return this;
             }
         }
-
         orderList.add(CartLineItem.make(product, quantity));
+        return this;
     }
 
     /**
