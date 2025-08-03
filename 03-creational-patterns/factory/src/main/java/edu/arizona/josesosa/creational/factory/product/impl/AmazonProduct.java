@@ -6,11 +6,8 @@ import java.math.BigDecimal;
 
 public class AmazonProduct extends Product {
 
-    private BigDecimal originalPrice;
-
     public AmazonProduct(String name, String description, BigDecimal price) {
         super(name, description, price);
-        this.originalPrice = price;
     }
 
     public AmazonProduct(String name) {
@@ -18,9 +15,8 @@ public class AmazonProduct extends Product {
     }
 
     @Override
-    public void setPrice(BigDecimal price) {
-        super.setPrice(applyDiscount(price));
-        this.originalPrice = price;
+    public BigDecimal getPrice() {
+        return applyDiscount(super.getPrice());
     }
 
     private BigDecimal applyDiscount(BigDecimal originalPrice) {
@@ -28,7 +24,7 @@ public class AmazonProduct extends Product {
     }
 
     public BigDecimal getOriginalPrice() {
-        return originalPrice;
+        return super.getPrice();
     }
 
     public static AmazonProduct make(String name) {
@@ -38,7 +34,6 @@ public class AmazonProduct extends Product {
     @Override
     public Product init(String description, BigDecimal price) {
         super.init(description, price);
-        this.originalPrice = price;
         return this;
     }
 }

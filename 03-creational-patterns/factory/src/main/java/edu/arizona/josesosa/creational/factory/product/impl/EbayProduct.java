@@ -3,8 +3,6 @@ package edu.arizona.josesosa.creational.factory.product.impl;
 import edu.arizona.josesosa.creational.factory.product.Product;
 
 import java.math.BigDecimal;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 
 public class EbayProduct extends Product {

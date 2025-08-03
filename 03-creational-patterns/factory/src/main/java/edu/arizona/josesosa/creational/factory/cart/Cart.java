@@ -4,45 +4,48 @@ import edu.arizona.josesosa.creational.factory.product.Product;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public class Cart {
 
-    private List<CartLineItem> orderList = new ArrayList<>();
+    private final List<CartLineItem> orderList = new ArrayList<>();
 
     /**
-     * Add a product to the cart
+     * Add a product to the cart. If the product already exists, its quantity is updated.
      *
-     * @param product
-     * @param quantity
+     * @param product  the product to add
+     * @param quantity the quantity of the product
+     * @return the cart itself
      */
     public Cart addLine(Product product, int quantity) {
-        // aggregation
-        for (CartLineItem line : orderList) {
-            if (line.getProduct() == product) { // left == on purpose!
-                line.setQuantity(line.getQuantity() + quantity);
-                return this;
-            }
-        }
-        orderList.add(CartLineItem.make(product, quantity));
+        findLineItemBy(product).ifPresentOrElse(
+                lineItem -> lineItem.setQuantity(lineItem.getQuantity() + quantity),
+                () -> orderList.add(CartLineItem.make(product, quantity))
+        );
         return this;
+    }
+
+    private Optional<CartLineItem> findLineItemBy(Product product) {
+        return orderList.stream()
+                .filter(line -> line.getProduct() == product)
+                .findFirst();
     }
 
     /**
      * @return The total cart cost
      */
     public BigDecimal getTotal() {
-        BigDecimal total = BigDecimal.ZERO;
-        for (CartLineItem orderLine : orderList) {
-            total = total.add(orderLine.getSubTotal());
-        }
-        return total;
+        return orderList.stream()
+                .map(CartLineItem::getSubTotal)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     /**
-     * @return get all items as a list
+     * @return An unmodifiable list of the items in the cart.
      */
     public List<CartLineItem> getOrderList() {
-        return orderList;
+        return Collections.unmodifiableList(orderList);
     }
 }

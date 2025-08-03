@@ -6,21 +6,39 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AmazonProductTest {
 
+    private static final String DUMMY_NAME = "Test Product";
+    private static final String DUMMY_DESCRIPTION = "Test Description";
+
     @Test
-    public void testAmazonProductApplies10PercentDiscount() {
-        // Create an AmazonProduct with a price of 100
-        AmazonProduct product = new AmazonProduct("Test Product", "Test Description", new BigDecimal("100"));
-        
-        // The getPrice method should return the price with a 10% discount (90)
-        assertEquals(new BigDecimal("90.0"), product.getPrice());
-        
-        // Test with setPrice
+    void priceDiscountedWhenSetThroughConstructor() {
+        AmazonProduct product = createProductWithPriceViaConstructor("100");
+        assertPriceIsDiscounted(product, "90.0");
+    }
+
+    @Test
+    void priceDiscountedWhenSetThroughSetter() {
+        AmazonProduct product = createProductWithPriceViaConstructor("100");
         product.setPrice(new BigDecimal("200"));
-        assertEquals(new BigDecimal("180.0"), product.getPrice());
-        
-        // Test with init
-        product = new AmazonProduct("Test Product");
-        product.init("Test Description", new BigDecimal("300"));
-        assertEquals(new BigDecimal("270.0"), product.getPrice());
+        assertPriceIsDiscounted(product, "180.0");
+    }
+
+    @Test
+    void priceDiscountedWhenSetThroughInit() {
+        AmazonProduct product = createProductAndInitWithPrice("300");
+        assertPriceIsDiscounted(product, "270.0");
+    }
+
+    private AmazonProduct createProductWithPriceViaConstructor(String price) {
+        return new AmazonProduct(DUMMY_NAME, DUMMY_DESCRIPTION, new BigDecimal(price));
+    }
+
+    private AmazonProduct createProductAndInitWithPrice(String price) {
+        AmazonProduct product = new AmazonProduct(DUMMY_NAME);
+        product.init(DUMMY_DESCRIPTION, new BigDecimal(price));
+        return product;
+    }
+
+    private void assertPriceIsDiscounted(AmazonProduct product, String expectedPrice) {
+        assertEquals(new BigDecimal(expectedPrice), product.getPrice());
     }
 }

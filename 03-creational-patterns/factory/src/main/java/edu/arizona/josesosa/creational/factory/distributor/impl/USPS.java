@@ -10,13 +10,11 @@ public class USPS extends Distributor {
 
     @Override
     public BigDecimal getCharge() {
-        // location estimate
         return new BigDecimal(150);
     }
 
     @Override
     public double getRank() {
-        // some more detailed calculation
         return 2.5;
     }
 

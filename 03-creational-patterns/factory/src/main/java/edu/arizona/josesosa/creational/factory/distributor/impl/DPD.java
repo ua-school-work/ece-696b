@@ -10,13 +10,11 @@ public class DPD extends Distributor {
 
     @Override
     public BigDecimal getCharge() {
-        // location estimate
         return new BigDecimal(130);
     }
 
     @Override
     public double getRank() {
-        // some more detailed calculation
         return 4.6;
     }
 

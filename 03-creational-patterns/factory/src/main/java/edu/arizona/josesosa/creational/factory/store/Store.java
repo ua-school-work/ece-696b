@@ -5,69 +5,83 @@ import edu.arizona.josesosa.creational.factory.distributor.Distributor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class Store {
 
-    private final List<Cart> orderList = new ArrayList<Cart>();
-    protected List<Distributor> distributors = null;
-    private Cart order = null;
-    private Distributor selectedDistributor = null;
+    private final List<Cart> orderHistory = new ArrayList<>();
+    private final List<Distributor> distributors;
+    private Distributor selectedDistributor;
 
     /**
-     * Constructor
+     * Constructs a Store using a factory to supply its dependencies.
+     *
+     * @param storeFactory The factory for creating distributors.
      */
     public Store(StoreFactory storeFactory) {
-        if (storeFactory == null) {
-            throw new IllegalArgumentException("StoreFactory cannot be null");
+        this.distributors = createDistributorsFromFactory(storeFactory);
+    }
+
+    private List<Distributor> createDistributorsFromFactory(StoreFactory storeFactory) {
+        Objects.requireNonNull(storeFactory, "StoreFactory cannot be null.");
+        List<Distributor> createdDistributors = storeFactory.createDistributors();
+        if (createdDistributors == null || createdDistributors.isEmpty()) {
+            throw new IllegalArgumentException("Distributors list from StoreFactory cannot be null or empty.");
         }
-        if (storeFactory.createDistributors() == null) {
-            throw new IllegalArgumentException("Distributors list from StoreFactory cannot be null");
-        }
-        distributors = storeFactory.createDistributors();
+        return createdDistributors;
     }
 
     /**
-     * @return list of distributors the store supports
+     * Returns the list of distributors the store supports.
+     *
+     * @return A list of supported distributors.
      */
-    public List<Distributor> getDistributorList() {
-        if (distributors == null || distributors.isEmpty()) {
-            throw new IllegalStateException("No distributors available");
-        }
+    public List<Distributor> getDistributors() {
         return distributors;
     }
 
+    /**
+     * A hook method for subclasses to add custom logic before order processing.
+     * This is a voluntary override.
+     *
+     * @param order The cart being processed.
+     * @throws Exception if an error occurs during the hook processing.
+     */
     protected void hookProcess(Cart order) throws Exception {
     } // voluntary override
 
+    /**
+     * Gets the currently selected distributor.
+     *
+     * @return The selected distributor.
+     */
     final protected Distributor getSelectedDistributor() {
         return selectedDistributor;
     }
 
     /**
-     * Bit imperfect selection of the distributor
+     * Selects a distributor from the available list by its index.
      *
-     * @param index of the distributor in the list
+     * @param index The index of the distributor in the list.
      */
     final public void selectDistributor(int index) {
-        selectedDistributor = getDistributorList().get(index);
-
+        this.selectedDistributor = distributors.get(index);
     }
 
     /**
-     * Processing the order
+     * Processes the given order by shipping it via the selected distributor
+     * and recording it in the history.
      *
-     * @param order
-     * @throws Exception
+     * @param cart The cart to be processed.
+     * @throws Exception if a distributor is not selected or if shipping fails.
      */
-    final public void process(Cart order) throws Exception {
+    final public void process(Cart cart) throws Exception {
         if (selectedDistributor == null) {
-            throw new Exception("Select distributor");
+            throw new IllegalStateException("A distributor must be selected before processing an order.");
         }
-        hookProcess(order);
-
-        this.order = order;
-        selectedDistributor.ship(this.order);
-        orderList.add(this.order);
+        hookProcess(cart);
+        selectedDistributor.ship(cart);
+        orderHistory.add(cart);
     }
 
 }
