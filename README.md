@@ -23,6 +23,14 @@ global point of access to it. For more details on running the project and the te
 please see the [Singleton README](03-creational-patterns/singleton/README.md).
 
 ---
+## Assignment 4: Creational Patterns - Factory
+
+This project demonstrates the Factory design pattern, which provides an interface for creating objects without specifying their concrete classes.
+The implementation includes multiple design patterns such as Factory, Strategy, Adapter, Fluent Interface, and Template Method.
+Key features include UPS delivery service integration, an Amazon store with exclusive UPS support, price reduction through an adapter, and strategy-based delivery selection.
+For more details on running the project and the tests, please see the [Factory README](03-creational-patterns/factory/README.md).
+
+---
 ## Assignment 5: Structural Patterns - Adapter
 
 This project demonstrates the Adapter design pattern, which allows objects with incompatible interfaces to collaborate.
