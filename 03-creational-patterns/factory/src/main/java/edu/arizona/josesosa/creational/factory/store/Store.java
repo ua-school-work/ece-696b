@@ -8,21 +8,39 @@ import java.util.List;
 
 public abstract class Store {
 
-    private List<Cart> orderList = new ArrayList<Cart>();
-
+    private final List<Cart> orderList = new ArrayList<Cart>();
+    protected List<Distributor> distributors = null;
     private Cart order = null;
-    private Distributor distributor = null;
+    private Distributor selectedDistributor = null;
+
+    /**
+     * Constructor
+     */
+    public Store(StoreFactory storeFactory) {
+        if (storeFactory == null) {
+            throw new IllegalArgumentException("StoreFactory cannot be null");
+        }
+        if (storeFactory.createDistributors() == null) {
+            throw new IllegalArgumentException("Distributors list from StoreFactory cannot be null");
+        }
+        distributors = storeFactory.createDistributors();
+    }
 
     /**
      * @return list of distributors the store supports
      */
-    public abstract List<Distributor> getDistributorList(); // force to override
+    public List<Distributor> getDistributorList() {
+        if (distributors == null || distributors.isEmpty()) {
+            throw new IllegalStateException("No distributors available");
+        }
+        return distributors;
+    }
 
     protected void hookProcess(Cart order) throws Exception {
     } // voluntary override
 
     final protected Distributor getSelectedDistributor() {
-        return distributor;
+        return selectedDistributor;
     }
 
     /**
@@ -31,7 +49,7 @@ public abstract class Store {
      * @param index of the distributor in the list
      */
     final public void selectDistributor(int index) {
-        distributor = getDistributorList().get(index);
+        selectedDistributor = getDistributorList().get(index);
 
     }
 
@@ -42,13 +60,13 @@ public abstract class Store {
      * @throws Exception
      */
     final public void process(Cart order) throws Exception {
-        if (distributor == null) {
+        if (selectedDistributor == null) {
             throw new Exception("Select distributor");
         }
         hookProcess(order);
 
         this.order = order;
-        distributor.ship(this.order);
+        selectedDistributor.ship(this.order);
         orderList.add(this.order);
     }
 

@@ -4,6 +4,7 @@ import edu.arizona.josesosa.creational.factory.cart.Cart;
 import edu.arizona.josesosa.creational.factory.cart.CartLineItem;
 import edu.arizona.josesosa.creational.factory.distributor.Distributor;
 import edu.arizona.josesosa.creational.factory.distributor.impl.DPD;
+import edu.arizona.josesosa.creational.factory.distributor.impl.UPS;
 import edu.arizona.josesosa.creational.factory.distributor.impl.USPS;
 import edu.arizona.josesosa.creational.factory.product.Product;
 import edu.arizona.josesosa.creational.factory.store.Store;
@@ -13,20 +14,8 @@ import java.util.List;
 
 public class Walmart extends Store {
 
-    private List<Distributor> distributorList = null;
-
     public Walmart() {
-        Distributor[] distributors = {new USPS(), new DPD()};
-        distributorList = Arrays.asList(distributors);
-    }
-
-    public Walmart(List<Distributor> distributorList) {
-        this.distributorList = distributorList;
-    }
-
-    @Override
-    public List<Distributor> getDistributorList() {
-        return distributorList;
+        super(new WalmartFactory());
     }
 
     @Override
