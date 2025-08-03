@@ -13,12 +13,7 @@ public class EbayProduct extends Product {
 
     static {
         // hack for the illustration
-        Map<String, Double> temporary = new HashMap<>();
-        temporary.put("Soap", 2.4);
-        temporary.put("Lego", 5.0);
-        temporary.put("Tabaco", 4.1);
-        temporary.put("Book", 2.1);
-        productRank = Collections.unmodifiableMap(temporary);
+        productRank = Map.of("Soap", 2.4, "Lego", 5.0, "Tabaco", 4.1, "Book", 2.1);
     }
 
     private double rank = 0.0;
@@ -33,9 +28,6 @@ public class EbayProduct extends Product {
         if (productRank.containsKey(name)) {
             rank = productRank.get(name);
         }
-    }
-
-    public EbayProduct() {
     }
 
     public double getRank() {
