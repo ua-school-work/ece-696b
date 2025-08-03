@@ -2,17 +2,9 @@ package edu.arizona.josesosa.creational.factory.store.impl;
 
 import edu.arizona.josesosa.creational.factory.cart.Cart;
 import edu.arizona.josesosa.creational.factory.cart.CartLineItem;
-import edu.arizona.josesosa.creational.factory.distributor.Distributor;
-import edu.arizona.josesosa.creational.factory.distributor.impl.DHL;
-import edu.arizona.josesosa.creational.factory.distributor.impl.DPD;
-import edu.arizona.josesosa.creational.factory.distributor.impl.UPS;
 import edu.arizona.josesosa.creational.factory.product.Product;
 import edu.arizona.josesosa.creational.factory.product.impl.EbayProduct;
 import edu.arizona.josesosa.creational.factory.store.Store;
-
-
-import java.util.Arrays;
-import java.util.List;
 
 public class Ebay extends Store {
 
