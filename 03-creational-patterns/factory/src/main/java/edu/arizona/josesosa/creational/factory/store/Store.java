@@ -2,6 +2,8 @@ package edu.arizona.josesosa.creational.factory.store;
 
 import edu.arizona.josesosa.creational.factory.cart.Cart;
 import edu.arizona.josesosa.creational.factory.distributor.Distributor;
+import edu.arizona.josesosa.creational.factory.distributor.strategy.DeliveryPickStrategy;
+import edu.arizona.josesosa.creational.factory.distributor.strategy.PickByPrice;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,14 +14,29 @@ public abstract class Store {
     private final List<Cart> orderHistory = new ArrayList<>();
     private final List<Distributor> distributors;
     private Distributor selectedDistributor;
+    private DeliveryPickStrategy deliveryPickStrategy;
 
     /**
      * Constructs a Store using a factory to supply its dependencies.
+     * Uses PickByPrice as the default strategy.
      *
      * @param storeFactory The factory for creating distributors.
      */
     public Store(StoreFactory storeFactory) {
         this.distributors = createDistributorsFromFactory(storeFactory);
+        this.deliveryPickStrategy = new PickByPrice(); // Default strategy
+    }
+    
+    /**
+     * Constructs a Store using a factory to supply its dependencies
+     * and a specific delivery pick strategy.
+     *
+     * @param storeFactory The factory for creating distributors.
+     * @param deliveryPickStrategy The strategy to use for selecting distributors.
+     */
+    public Store(StoreFactory storeFactory, DeliveryPickStrategy deliveryPickStrategy) {
+        this.distributors = createDistributorsFromFactory(storeFactory);
+        this.deliveryPickStrategy = deliveryPickStrategy;
     }
 
     private List<Distributor> createDistributorsFromFactory(StoreFactory storeFactory) {
@@ -66,6 +83,35 @@ public abstract class Store {
      */
     final public void selectDistributor(int index) {
         this.selectedDistributor = distributors.get(index);
+    }
+    
+    /**
+     * Sets the strategy for picking distributors.
+     *
+     * @param strategy The strategy to use for selecting distributors.
+     */
+    public void setDeliveryPickStrategy(DeliveryPickStrategy strategy) {
+        this.deliveryPickStrategy = Objects.requireNonNull(strategy, "DeliveryPickStrategy cannot be null");
+    }
+    
+    /**
+     * Gets the current strategy for picking distributors.
+     *
+     * @return The current delivery pick strategy.
+     */
+    public DeliveryPickStrategy getDeliveryPickStrategy() {
+        return deliveryPickStrategy;
+    }
+    
+    /**
+     * Selects a distributor using the current delivery pick strategy.
+     * This automatically selects the best distributor according to the strategy's criteria.
+     */
+    public void selectDistributorUsingStrategy() {
+        if (deliveryPickStrategy == null) {
+            throw new IllegalStateException("No delivery pick strategy has been set");
+        }
+        this.selectedDistributor = deliveryPickStrategy.pickDistributor(distributors);
     }
 
     /**
