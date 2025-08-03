@@ -23,8 +23,8 @@ public class EbayProduct extends Product {
 
     private double rank = 0.0;
 
-    public EbayProduct(String name, String describtion, BigDecimal price, double rank) {
-        super(name, describtion, price);
+    public EbayProduct(String name, String description, BigDecimal price, double rank) {
+        super(name, description, price);
         this.rank = rank;
     }
 
@@ -50,8 +50,8 @@ public class EbayProduct extends Product {
         return new EbayProduct(name);
     }
 
-    public EbayProduct init(String describtion, BigDecimal price, double rank) {
-        super.init(describtion, price);
+    public EbayProduct init(String description, BigDecimal price, double rank) {
+        super.init(description, price);
         this.rank = rank;
         return this;
     }

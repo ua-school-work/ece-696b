@@ -5,13 +5,13 @@ import java.math.BigDecimal;
 public class Product {
 
     private String name;
-    private String describtion;
+    private String description;
     private BigDecimal price;
 
-    public Product(String name, String describtion, BigDecimal price) {
+    public Product(String name, String description, BigDecimal price) {
         super();
         this.name = name;
-        this.describtion = describtion;
+        this.description = description;
         this.price = price;
     }
 
@@ -30,12 +30,12 @@ public class Product {
         this.name = name;
     }
 
-    public String getDescribtion() {
-        return describtion;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescribtion(String describtion) {
-        this.describtion = describtion;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public BigDecimal getPrice() {
@@ -50,8 +50,8 @@ public class Product {
         return new Product(name);
     }
 
-    public Product init(String describtion, BigDecimal price) {
-        this.describtion = describtion;
+    public Product init(String description, BigDecimal price) {
+        this.description = description;
         this.price = price;
         return this;
     }
