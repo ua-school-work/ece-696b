@@ -9,7 +9,6 @@ public class EbayUserTest extends UserTest {
 
     // pick a store
     protected Store makeStore() {
-        // Walmart();
         return new Ebay();
     }
 
