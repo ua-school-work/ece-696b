@@ -30,6 +30,12 @@ The implementation includes multiple design patterns such as Factory, Strategy, 
 Key features include UPS delivery service integration, an Amazon store with exclusive UPS support, price reduction through an adapter, and strategy-based delivery selection.
 For more details on running the project and the tests, please see the [Factory README](03-creational-patterns/factory/README.md).
 
+This project also includes an implementation of the Abstract Factory pattern, which is an extension of the Factory Method pattern. The Abstract Factory implementation
+includes features such as an abstract `AbstractFactory` class with methods for creating products, stores, and distributors, concrete factories for Amazon, Ebay, and
+Walmart, and application of the Flyweight pattern for caching products. The Abstract Factory pattern provides benefits like enforced compatibility, reduced memory
+usage, simplified client code, and centralized configuration.
+For more details on the Abstract Factory implementation, please see the [Abstract Factory README](03-creational-patterns/abstract-factory/README.md).
+
 ---
 ## Assignment 5: Structural Patterns - Adapter
 
