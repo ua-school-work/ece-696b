@@ -23,7 +23,7 @@ For this homework assignment, I completed the following tasks:
 The UML class diagrams for this project can be found in the `.diagrams` directory:
 
 - [Original Factory UML Class Diagram](.diagrams/original-factory-uml-class-diagram.png) - Shows the initial architecture before my changes
-![Resulting Factory UML Class Diagram](.diagrams/original-factory-uml-class-diagram.png)
+![Original Factory UML Class Diagram](.diagrams/original-factory-uml-class-diagram.png)
 - [Resulting Factory UML Class Diagram](.diagrams/restulting-factory-uml-class-diagram.png) - Shows the final architecture after implementing all requirements
 ![Resulting Factory UML Class Diagram](.diagrams/restulting-factory-uml-class-diagram.png)
 
