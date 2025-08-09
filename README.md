@@ -62,3 +62,14 @@ For more details on running the project and the tests, please see the [Proxy REA
 This project demonstrates the Decorator design pattern, which allows behavior to be added to individual objects, either statically or dynamically, without affecting the behavior of other objects from the same class.
 The implementation shows how multiple decorators can be stacked to add combined functionality (compression and encryption) to a base component (file data source).
 For more details on running the project and the tests, please see the [Decorator README](04-structural-patterns/decorator/README.md).
+
+---
+## Assignment 9: Behavioral Patterns - Broadcaster
+
+This project demonstrates three behavioral design patterns through a Spring Boot command-line application:
+1. **Chain of Responsibility** - Messages pass through a chain of handlers
+2. **Mediator** - Components communicate through a central mediator
+3. **Observer** - Components subscribe to and receive notifications from subjects
+
+The application allows components to communicate asynchronously by sending messages to each other using these different patterns. It includes features like automatic log generation and comprehensive unit tests for all components.
+For more details on running the application and the tests, please see the [Broadcaster README](05-behavioral-patterns/broadcaster/README.md).

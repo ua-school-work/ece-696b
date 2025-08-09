@@ -67,3 +67,6 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
+
+logs/
+05-behavioral-patterns/broadcaster/spring-shell.log
