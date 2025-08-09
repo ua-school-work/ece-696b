@@ -1,0 +1,226 @@
+@startuml
+
+title Contact Builder Pattern - UML Class Diagram
+
+' Interfaces
+interface Contact.Importer {
+  +String provideName()
+  +String provideEmail()
+  +String providePhone()
+  +void open()
+  +void close()
+}
+
+interface Contact.Exporter {
+  +void addName(String)
+  +void addEmail(String)
+  +void addPhone(String)
+}
+
+interface ContactBuilder {
+  +ContactBuilder build()
+  +void save(String)
+  +String getContent()
+}
+
+' Main classes
+class Contact {
+  -Email email
+  -Name name
+  -Phone phone
+  +Contact(Importer)
+  +void export(Exporter)
+  +ContactBuilder exportAndBuild(ContactBuilder)
+  +void exportAndSave(ContactBuilder, String)
+  +static List<Contact> fromCSV(String)
+  +String toString()
+  -static class Name
+  -static class Email
+  -static class Phone
+}
+
+' Importers
+class ContactSwingImporter {
+  -JFrame parent
+  -JDialog frame
+  -JPanel panel
+  -JTextField nameTextField
+  -JTextField emailTextField
+  -JTextField phoneTextField
+  +String provideName()
+  +String provideEmail()
+  +String providePhone()
+  +void open()
+  +void close()
+}
+
+class ContactTextImporter {
+  +String provideName()
+  +String provideEmail()
+  +String providePhone()
+  +void open()
+  +void close()
+  -void showHeader()
+  -void showBye()
+  -String askFor(String)
+}
+
+class ContactCSVImporter {
+  -String csvFilePath
+  -CSVParser csvParser
+  -Iterator<CSVRecord> recordIterator
+  -CSVRecord currentRecord
+  +ContactCSVImporter(String)
+  +void open()
+  +String provideName()
+  +String provideEmail()
+  +String providePhone()
+  +void close()
+  +boolean hasNext()
+  +boolean next()
+}
+
+' Exporters
+class ContactHTMLExporter {
+  -String name
+  -String email
+  -String phone
+  +void addName(String)
+  +void addEmail(String)
+  +void addPhone(String)
+  +String toString()
+}
+
+class ContactCSVExporter {
+  -String name
+  -String email
+  -String phone
+  +void addName(String)
+  +void addEmail(String)
+  +void addPhone(String)
+  +String toString()
+}
+
+class GUIExporter {
+  -String name
+  -String email
+  -String phone
+  +void addName(String)
+  +void addEmail(String)
+  +void addPhone(String)
+  +JPanel getJPanel()
+}
+
+' Builders
+class ExcelBuilder {
+  -String name
+  -String email
+  -String phone
+  -Workbook workbook
+  -Sheet sheet
+  -boolean built
+  +ExcelBuilder()
+  +void addName(String)
+  +void addEmail(String)
+  +void addPhone(String)
+  +ContactBuilder build()
+  +void save(String)
+  +String getContent()
+  +ExcelBuilder addContact(String, String, String)
+  +void close()
+}
+
+class PDFBuilder {
+  -String name
+  -String email
+  -String phone
+  -PDDocument document
+  -List<Contact> contacts
+  -boolean built
+  +PDFBuilder()
+  +void addName(String)
+  +void addEmail(String)
+  +void addPhone(String)
+  +ContactBuilder build()
+  +void save(String)
+  +String getContent()
+  +PDFBuilder addContact(String, String, String)
+  +void close()
+  -static class Contact
+}
+
+class RTFBuilder {
+  -String name
+  -String email
+  -String phone
+  -List<Contact> contacts
+  -boolean built
+  -String content
+  +RTFBuilder()
+  +void addName(String)
+  +void addEmail(String)
+  +void addPhone(String)
+  +ContactBuilder build()
+  +void save(String)
+  +String getContent()
+  +RTFBuilder addContact(String, String, String)
+  -static class Contact
+}
+
+class XMLBuilder {
+  -String name
+  -String email
+  -String phone
+  -Contacts contacts
+  -boolean built
+  -String content
+  +XMLBuilder()
+  +void addName(String)
+  +void addEmail(String)
+  +void addPhone(String)
+  +ContactBuilder build()
+  +void save(String)
+  +String getContent()
+  +XMLBuilder addContact(String, String, String)
+  +static class Contacts
+  +static class ContactData
+}
+
+class HTMLBuilder {
+  -String name
+  -String email
+  -String phone
+  -List<Contact> contacts
+  -Document document
+  -boolean built
+  +HTMLBuilder()
+  +void addName(String)
+  +void addEmail(String)
+  +void addPhone(String)
+  +ContactBuilder build()
+  +void save(String)
+  +String getContent()
+  +HTMLBuilder addContact(String, String, String)
+  -static class Contact
+}
+
+' Relationships
+Contact.Importer <|.. ContactSwingImporter
+Contact.Importer <|.. ContactTextImporter
+Contact.Importer <|.. ContactCSVImporter
+
+Contact.Exporter <|.. ContactHTMLExporter
+Contact.Exporter <|.. ContactCSVExporter
+Contact.Exporter <|.. GUIExporter
+Contact.Exporter <|.. ContactBuilder
+
+ContactBuilder <|.. ExcelBuilder
+ContactBuilder <|.. PDFBuilder
+ContactBuilder <|.. RTFBuilder
+ContactBuilder <|.. XMLBuilder
+ContactBuilder <|.. HTMLBuilder
+
+Contact --> Contact.Importer : uses >
+Contact --> Contact.Exporter : uses >
+
+@enduml
