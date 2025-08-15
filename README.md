@@ -73,3 +73,10 @@ This project demonstrates three behavioral design patterns through a Spring Boot
 
 The application allows components to communicate asynchronously by sending messages to each other using these different patterns. It includes features like automatic log generation and comprehensive unit tests for all components.
 For more details on running the application and the tests, please see the [Broadcaster README](05-behavioral-patterns/broadcaster/README.md).
+
+---
+## Assignment 10: Behavioral Patterns - Visitor
+
+This project demonstrates the Visitor pattern applied to exception handling to eliminate long chains of catch blocks. By using double dispatch, exceptions accept a visitor (an ExceptionHandler) that centralizes handling logic, resulting in cleaner, more maintainable, and easily extensible code.
+
+For more details on running the project and the tests, please see the [Visitor README](05-behavioral-patterns/visitor/README.md).
