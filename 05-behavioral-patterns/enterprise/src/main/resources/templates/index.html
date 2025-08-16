@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{title}}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2rem; }
+        h1 { color: #154734; }
+        .status { margin: 0.5rem 0; color: #155724; background: #d4edda; padding: 0.5rem 0.75rem; border-radius: 4px; display: inline-block; }
+        form { margin-bottom: 1rem; }
+        label { display: block; margin: 0.25rem 0; }
+        input[type=text], input[type=number], input[type=email] { padding: 0.4rem; width: 20rem; }
+        button { padding: 0.5rem 1rem; background: #154734; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ccc; padding: 0.5rem; text-align: left; }
+        th { background: #f4f4f4; }
+        .actions a { margin-right: 0.5rem; }
+    </style>
+</head>
+<body>
+    <h1>{{title}}</h1>
+
+    <div class="status">{{statusMessage}}</div>
+
+    <form method="post" action="{{formAction}}">
+        <input type="hidden" name="id" value="{{idHidden}}" />
+        <label>Name: <input type="text" name="name" value="{{name}}" required /></label>
+        <label>Email: <input type="email" name="email" value="{{email}}" required /></label>
+        <label>Age: <input type="number" name="age" value="{{age}}" min="0" /></label>
+        <button type="submit">{{submitLabel}}</button>
+        <a href="/" style="margin-left: 0.5rem;">Clear</a>
+    </form>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Age</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{peopleTable}}
+        </tbody>
+    </table>
+
+    <p style="margin-top: 1rem; font-size: 0.9rem; color:#555;">Server running at http://localhost:8088</p>
+</body>
+</html>
