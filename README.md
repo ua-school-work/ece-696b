@@ -80,3 +80,16 @@ For more details on running the application and the tests, please see the [Broad
 This project demonstrates the Visitor pattern applied to exception handling to eliminate long chains of catch blocks. By using double dispatch, exceptions accept a visitor (an ExceptionHandler) that centralizes handling logic, resulting in cleaner, more maintainable, and easily extensible code.
 
 For more details on running the project and the tests, please see the [Visitor README](05-behavioral-patterns/visitor/README.md).
+
+
+---
+## Assignment 11: Behavioral Patterns - Enterprise
+
+This project is a self-contained HTTP application written in plain Java (no Spring/EE) that demonstrates a simple 3-layer architecture and a tiny HTML template interpreter. It provides a CRUD UI to collect people who want to follow Baylor sports updates (name, email, age).
+
+Highlights:
+- Server: com.sun.net.httpserver.HttpServer (Java SE), port 8089
+- Templating: Minimal engine that resolves `{{variable}}` or `{{method()}}` tokens
+- Layers: Controller → Service (in-memory DAO) → Domain; in-memory, application-scope storage
+
+For more details on running the project and the tests, please see the [Enterprise README](05-behavioral-patterns/enterprise/README.md).
